@@ -112,11 +112,11 @@ function updateInventoryMGMT(){
       connection.query("SELECT * FROM products where id =?",[item], function(err1, res1) {
         if (err) throw err;
         let invintoryQty = parseInt(answers.qty)-parseInt(res1[0].stock_quantity);
-        if(invintoryQty<=0){
-        console.log("You dont have that much to give away!");
-          mgmtNavigation();
-          return;
-        }else{
+        // if(invintoryQty<=0){
+        // console.log("You dont have that much to give away!");
+        //   mgmtNavigation();
+        //   return;
+        // }else{
           let newQty = parseInt(res1[0].stock_quantity) + parseInt(answers.qty);
           console.log("Updating Bamazon_DB");
           connection.query("UPDATE products SET stock_quantity = ? WHERE id =?",[newQty,item], function(err, res) {
@@ -124,7 +124,7 @@ function updateInventoryMGMT(){
             mgmtNavigation();
             return;
           });
-        }
+        // }
       });
     });
   });
